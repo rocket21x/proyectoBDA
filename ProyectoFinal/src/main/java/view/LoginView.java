@@ -18,6 +18,7 @@ public class LoginView extends javax.swing.JFrame {
      */
     public LoginView() {
         initComponents();
+        setLocationRelativeTo(null);
         
     }
 
@@ -54,8 +55,10 @@ public class LoginView extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
+        textUser.setFont(new java.awt.Font("Segoe UI Variable", 1, 14)); // NOI18N
         textUser.setText("Usuario");
 
+        textPassword.setFont(new java.awt.Font("Segoe UI Variable", 1, 14)); // NOI18N
         textPassword.setText("Contraseña");
 
         tfUsuario.addActionListener(new java.awt.event.ActionListener() {
@@ -64,8 +67,7 @@ public class LoginView extends javax.swing.JFrame {
             }
         });
 
-        tfContra.setText("jPasswordField1");
-
+        btnIniciarSesion.setFont(new java.awt.Font("Segoe UI Variable", 1, 14)); // NOI18N
         btnIniciarSesion.setText("Iniciar Sesion");
         btnIniciarSesion.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -78,7 +80,14 @@ public class LoginView extends javax.swing.JFrame {
             }
         });
 
+        textRegistro.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        textRegistro.setForeground(new java.awt.Color(0, 0, 255));
         textRegistro.setText("No tienes cuenta? Registrate aqui");
+        textRegistro.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                textRegistroMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -86,44 +95,33 @@ public class LoginView extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(135, 135, 135)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(160, 160, 160)
-                                .addComponent(textUser))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(135, 135, 135)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(textPassword)
-                                    .addComponent(tfContra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(tfUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(14, 14, 14)
-                                        .addComponent(btnIniciarSesion)))))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(109, 109, 109)
-                        .addComponent(textRegistro)
-                        .addContainerGap(172, Short.MAX_VALUE))))
+                    .addComponent(btnIniciarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textPassword)
+                    .addComponent(tfContra, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textUser)
+                    .addComponent(tfUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textRegistro))
+                .addGap(0, 121, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(155, 155, 155)
+                .addGap(156, 156, 156)
                 .addComponent(textUser)
-                .addGap(7, 7, 7)
-                .addComponent(tfUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tfUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(textPassword)
                 .addGap(18, 18, 18)
-                .addComponent(tfContra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
+                .addComponent(tfContra, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(textRegistro)
-                .addGap(27, 27, 27)
-                .addComponent(btnIniciarSesion)
-                .addContainerGap(161, Short.MAX_VALUE))
+                .addGap(35, 35, 35)
+                .addComponent(btnIniciarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(118, Short.MAX_VALUE))
         );
 
         pack();
@@ -174,6 +172,12 @@ public class LoginView extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_btnIniciarSesionActionPerformed
+
+    private void textRegistroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_textRegistroMouseClicked
+        // TODO add your handling code here:
+        RegistrarUsuarioView ru = new RegistrarUsuarioView();
+        ru.setVisible(true);
+    }//GEN-LAST:event_textRegistroMouseClicked
 
     /**
      * @param args the command line arguments

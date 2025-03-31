@@ -22,7 +22,7 @@ public class Conexion {
     Connection conexion = null;
     
     // Metodo para establecer la conexion con la BD
-    public Connection conexion(){
+    public Connection conectar(){
         // Establecemos el intento de la conexion
         try {
             
@@ -51,8 +51,6 @@ public class Conexion {
         }
     }
 
-    public PreparedStatement prepareStatement(String sql) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+   
 }
 

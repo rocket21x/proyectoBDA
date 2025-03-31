@@ -15,13 +15,13 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(int id, String nombre, String correo, String contra, String rol, String fechaRegistro) {
-        this.id = id;
+    public Usuario( String nombre, String correo, String contra, String rol) {
+        
         this.nombre = nombre;
         this.correo = correo;
         this.contra = contra;
         this.rol = rol;
-        this.fechaRegistro = fechaRegistro;
+        
     }
 
     public int getId() {
@@ -64,17 +64,11 @@ public class Usuario {
         this.rol = rol;
     }
 
-    public String getFechaRegistro() {
-        return fechaRegistro;
-    }
-
-    public void setFechaRegistro(String fechaRegistro) {
-        this.fechaRegistro = fechaRegistro;
-    }
+   
 
     @Override
     public String toString() {
-        return "Usuario{" + "id=" + id + ", nombre=" + nombre + ", correo=" + correo + ", contra=" + contra + ", rol=" + rol + ", fechaRegistro=" + fechaRegistro + '}';
+        return "Usuario{" + "id=" + id + ", nombre=" + nombre + ", correo=" + correo + ", contra=" + contra + ", rol=" + rol  +'}';
     }
     
 

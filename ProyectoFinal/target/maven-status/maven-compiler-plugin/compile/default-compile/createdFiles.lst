@@ -1,9 +1,13 @@
 utils\Conexion.class
+view\LoginView$5.class
 DAOs\UsuarioDAO.class
 com\mycompany\proyectofinal\ProyectoFinal.class
 view\AdminView.class
 model\Usuario.class
+view\RegistrarUsuarioView$1.class
 view\ClienteView.class
+view\RegistrarUsuarioView.class
+view\RegistrarUsuarioView$2.class
 view\LoginView$2.class
 view\LoginView.class
 view\ClienteView$1.class
