@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
 
 public class Conexion {
     String url ="jdbc:mysql://localhost:3306";
-    String nombreBD = "barberia";
+    String nombreBD = "proyectobda";
     String usuario = "root";
     String contra = "imperial";
     String driver = "com.mysql.jc.jdbc.Driver";

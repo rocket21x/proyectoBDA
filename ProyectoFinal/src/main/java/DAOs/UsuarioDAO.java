@@ -19,8 +19,8 @@ public class UsuarioDAO {
     private Conexion conexion;
 
     // 🔹 Constructor que recibe la conexión
-    public UsuarioDAO(Conexion conexion) {
-        this.conexion = conexion;
+    public UsuarioDAO() {
+        conexion = new Conexion();
     }
 
     // 🔹 REGISTRAR USUARIO usando Stored Procedure
@@ -82,5 +82,45 @@ public class UsuarioDAO {
         }
         
         return null; // Si no encuentra usuario, retorna null
+    }
+    public Usuario obtenerUsuarioPorCorreo(String correo) {
+        Usuario usuario = null;
+        String sql = "CALL obtener_usuario_por_correo(?)"; // Llamada al stored procedure
+        
+        try (Connection conn = conexion.conexion();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setString(1, correo);
+            ResultSet rs = ps.executeQuery();
+            
+            if (rs.next()) {
+                usuario = new Usuario();
+                usuario.setId(rs.getInt("id"));
+                usuario.setNombre(rs.getString("nombre"));
+                usuario.setCorreo(rs.getString("correo"));
+                usuario.setContra(rs.getString("contrasena"));
+                usuario.setRol(rs.getString("rol"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return usuario;
+    }
+    public String obtenerRol(String correo) {
+        String rol = null;
+        String query = "SELECT rol FROM usuarios WHERE correo = ?";
+
+        try (Connection conn = conexion.conexion(); 
+             PreparedStatement ps = conn.prepareStatement(query)) {
+            ps.setString(1, correo);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                rol = rs.getString("rol");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return rol;
     }
 }
