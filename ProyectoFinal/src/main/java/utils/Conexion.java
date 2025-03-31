@@ -17,7 +17,7 @@ public class Conexion {
     String nombreBD = "barberia";
     String usuario = "root";
     String contra = "imperial";
-    String driver = "com.mysql.jdbc.Driver";
+    String driver = "com.mysql.jc.jdbc.Driver";
     
     Connection conexion = null;
     
@@ -25,8 +25,7 @@ public class Conexion {
     public Connection conexion(){
         // Establecemos el intento de la conexion
         try {
-            // Cargar los driver de la base de datos en tiempo real o dinámico
-            Class.forName(driver);
+            
             // Establecer la conexion
             conexion =  DriverManager.getConnection(url+"/"+nombreBD, usuario, contra);
             
@@ -34,7 +33,7 @@ public class Conexion {
             System.out.println("Conexion exitosa");
             
             
-        } catch (HeadlessException | ClassNotFoundException | SQLException e) {
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Conexión fallida: " + e);
         }
          return conexion;   
@@ -50,6 +49,10 @@ public class Conexion {
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e);
         }
+    }
+
+    public PreparedStatement prepareStatement(String sql) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }
 
