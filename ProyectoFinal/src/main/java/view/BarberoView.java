@@ -59,10 +59,33 @@ public class BarberoView extends javax.swing.JFrame {
 
         jLabel3.setText("Servicios  hoy:");
 
+        txtNombreBarbero.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNombreBarberoActionPerformed(evt);
+            }
+        });
+
+        txtIdBarbero.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtIdBarberoActionPerformed(evt);
+            }
+        });
+
+        txtServiciosHoy.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtServiciosHoyActionPerformed(evt);
+            }
+        });
+
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel4.setText("Turno Actual");
 
         btnTerminarTurnoBarbero.setText("Terminar");
+        btnTerminarTurnoBarbero.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTerminarTurnoBarberoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -130,6 +153,22 @@ public class BarberoView extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnTerminarTurnoBarberoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTerminarTurnoBarberoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnTerminarTurnoBarberoActionPerformed
+
+    private void txtServiciosHoyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtServiciosHoyActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtServiciosHoyActionPerformed
+
+    private void txtIdBarberoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdBarberoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIdBarberoActionPerformed
+
+    private void txtNombreBarberoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreBarberoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombreBarberoActionPerformed
 
     /**
      * @param args the command line arguments

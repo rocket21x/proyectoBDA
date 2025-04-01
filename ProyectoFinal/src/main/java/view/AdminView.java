@@ -42,8 +42,18 @@ public class AdminView extends javax.swing.JFrame {
         });
 
         btnReportesClientes.setText("Ver Reportes Clientes");
+        btnReportesClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReportesClientesActionPerformed(evt);
+            }
+        });
 
         btnReportesPagos.setText("Ver Reportes Pagos");
+        btnReportesPagos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReportesPagosActionPerformed(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -94,6 +104,14 @@ public class AdminView extends javax.swing.JFrame {
     private void btnAdministrarBarberosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdministrarBarberosActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAdministrarBarberosActionPerformed
+
+    private void btnReportesClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportesClientesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnReportesClientesActionPerformed
+
+    private void btnReportesPagosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportesPagosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnReportesPagosActionPerformed
 
     /**
      * @param args the command line arguments
