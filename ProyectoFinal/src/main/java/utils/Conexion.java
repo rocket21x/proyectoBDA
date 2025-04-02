@@ -1,56 +1,40 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package utils;
 
-/**
- *
- * @author jesus
- */
-import java.awt.HeadlessException;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 public class Conexion {
-    String url ="jdbc:mysql://localhost:3306";
-    String nombreBD = "proyectobda";
-    String usuario = "root";
-    String contra = "imperial";
-    String driver = "com.mysql.jc.jdbc.Driver";
-    
-    Connection conexion = null;
-    
-    // Metodo para establecer la conexion con la BD
-    public Connection conectar(){
-        // Establecemos el intento de la conexion
+    private static final String URL = "jdbc:mysql://localhost:3306/proyectobda?useSSL=false&serverTimezone=UTC";
+    private static final String USUARIO = "root";
+    private static final String CONTRA = "imperial";
+
+    static {
         try {
-            
-            // Establecer la conexion
-            conexion =  DriverManager.getConnection(url+"/"+nombreBD, usuario, contra);
-            
-            //Mostrar un mensaje en dado caso que la conexion sea correcta
-            System.out.println("Conexion exitosa");
-            
-            
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Conexión fallida: " + e);
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            JOptionPane.showMessageDialog(null, "Error: Driver de MySQL no encontrado.");
         }
-         return conexion;   
-        
     }
-    public void desconectar(){
+
+    public static Connection getConnection() {
         try {
-            if(conexion!= null && !conexion.isClosed()){
-                
+            return DriverManager.getConnection(URL, USUARIO, CONTRA);
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error de conexión: " + e.getMessage());
+            return null;
+        }
+    }
+
+    public static void closeConnection(Connection conexion) {
+        if (conexion != null) {
+            try {
                 conexion.close();
-                System.out.println("se cerro la conexion con la bd");
+                System.out.println("Conexión cerrada correctamente.");
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, "Error al cerrar la conexión: " + e.getMessage());
             }
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, e);
         }
     }
-
-   
 }
-

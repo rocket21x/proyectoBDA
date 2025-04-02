@@ -4,6 +4,13 @@
  */
 package view;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.table.DefaultTableModel;
+import utils.Conexion;
+
 /**
  *
  * @author thecr
@@ -15,7 +22,31 @@ public class AdminView extends javax.swing.JFrame {
      */
     public AdminView() {
         initComponents();
+        cargarBarberos();
     }
+    
+    private void cargarBarberos() {
+    DefaultTableModel modelo = new DefaultTableModel();
+    modelo.addColumn("ID");
+    modelo.addColumn("Nombre");
+    modelo.addColumn("Especialidad");
+
+    try {
+        Connection con = Conexion.getConexion(); 
+        String sql = "SELECT id, nombre, especialidad FROM barberos"; // Ajusta según tu base de datos
+        PreparedStatement ps = con.prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+
+        while (rs.next()) {
+            Object[] fila = {rs.getInt("id"), rs.getString("nombre"), rs.getString("especialidad")};
+            modelo.addRow(fila);
+        }
+
+        jTable1.setModel(modelo);
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -102,7 +133,8 @@ public class AdminView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAdministrarBarberosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdministrarBarberosActionPerformed
-        // TODO add your handling code here:
+       BarberoView barberoView = new BarberoView(); // Asegúrate de que esta clase exista
+       barberoView.setVisible(true);
     }//GEN-LAST:event_btnAdministrarBarberosActionPerformed
 
     private void btnReportesClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportesClientesActionPerformed
