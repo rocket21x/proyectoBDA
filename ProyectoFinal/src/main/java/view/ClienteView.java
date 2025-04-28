@@ -4,6 +4,10 @@
  */
 package view;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.SpinnerDateModel;
+
 /**
  *
  * @author thecr
@@ -15,8 +19,41 @@ public class ClienteView extends javax.swing.JFrame {
      */
     public ClienteView() {
         initComponents();
-        setLocationRelativeTo(null);
+        configurarSpinnerHora();
+      
     }
+    private void configurarSpinnerHora() {
+        SpinnerDateModel model = new SpinnerDateModel();
+        spinnerHora.setModel(model);
+        spinnerHora.setEditor(new javax.swing.JSpinner.DateEditor(spinnerHora, "HH:mm"));
+    }
+    private void brnAgendarActionPerformed(java.awt.event.ActionEvent evt) {                                           
+    Date fecha = fechaCita.getDate(); // Obtiene la fecha seleccionada
+    Date hora = (Date) spinnerHora.getValue(); // Obtiene la hora seleccionada
+    
+    if (fecha == null) {
+        System.out.println("Selecciona una fecha.");
+        return;
+    }
+
+    // Extraemos la hora y los minutos
+    SimpleDateFormat formatoHora = new SimpleDateFormat("HH");
+    SimpleDateFormat formatoMinuto = new SimpleDateFormat("mm");
+
+    int horas = Integer.parseInt(formatoHora.format(hora));
+    int minutos = Integer.parseInt(formatoMinuto.format(hora));
+
+    // Combinamos la fecha con la hora seleccionada
+    fecha.setHours(horas);
+    fecha.setMinutes(minutos);
+    fecha.setSeconds(0); // Ajustamos segundos a 0
+
+    // Formato final de salida
+    SimpleDateFormat formatoFinal = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+    String fechaHoraStr = formatoFinal.format(fecha);
+
+    System.out.println("Cita agendada para: " + fechaHoraStr);
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -34,6 +71,7 @@ public class ClienteView extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         fechaCita = new com.toedter.calendar.JDateChooser();
         brnAgendar = new javax.swing.JButton();
+        spinnerHora = new javax.swing.JSpinner();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -75,12 +113,16 @@ public class ClienteView extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(26, 26, 26)
-                        .addComponent(fechaCita, javax.swing.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE)
+                        .addComponent(fechaCita, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
                         .addGap(15, 15, 15))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(76, 76, 76)
+                        .addGap(87, 87, 87)
                         .addComponent(brnAgendar, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(spinnerHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(125, 125, 125))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -96,9 +138,11 @@ public class ClienteView extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(33, 33, 33)
                         .addComponent(fechaCita, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(33, 33, 33)
+                        .addGap(54, 54, 54)
+                        .addComponent(spinnerHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(79, 79, 79)
                         .addComponent(brnAgendar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -157,6 +201,7 @@ public class ClienteView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSpinner spinnerHora;
     private javax.swing.JTable tablaServicios;
     // End of variables declaration//GEN-END:variables
 }
