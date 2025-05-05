@@ -4,8 +4,11 @@
  */
 package control;
 
+import DAOs.BarberoDAO;
 import DAOs.ServicioDAO;
 import java.util.List;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 import model.Servicio;
 
 /**
@@ -61,6 +64,34 @@ public class ControlServicio {
         boolean exito = servicioDAO.eliminarServicio(id);
         return exito ? "Servicio eliminado con éxito." : "Error al eliminar el servicio.";
     }
+    
+    
+    //citas
+    
+    public void llenarTablaServicios(JTable tablaServicios) {
+    ServicioDAO dao = new ServicioDAO();
+    List<Servicio> lista = dao.listarServicios();
+    DefaultTableModel model = new DefaultTableModel(new String[]{"ID", "Nombre", "Descripción", "Precio", "Duración"}, 0);
+
+    for (Servicio s : lista) {
+        model.addRow(new Object[]{s.getId(), s.getNombre(), s.getDescripcion(), s.getPrecio(), s.getDuracion()});
+    }
+
+    tablaServicios.setModel(model);
+}
+    public void llenarTablaBarberos(JTable tablaBarberos) {
+    BarberoDAO dao = new BarberoDAO();
+    //List<Barbero> lista = dao.listarBarberos();
+    DefaultTableModel model = new DefaultTableModel(new String[]{"ID", "Nombre"}, 0);
+
+//    for (Barbero b : lista) {
+//        model.addRow(new Object[]{b.getId(), b.getNombre()});
+//    }
+
+    tablaBarberos.setModel(model);
+}
+
+
 
    
     

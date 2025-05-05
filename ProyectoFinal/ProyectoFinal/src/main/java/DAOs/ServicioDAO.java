@@ -4,10 +4,12 @@
  */
 package DAOs;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import model.Servicio;
@@ -95,4 +97,26 @@ public class ServicioDAO {
             return false;
         }
     }
+    public boolean agendarCita(int idServicio, int idBarbero, Timestamp fechaHora) {
+    boolean exito = false;
+
+    String sql = "{CALL AgendarCita(?, ?, ?)}";
+
+    try (Connection con = Conexion.getConexion();
+         CallableStatement cs = con.prepareCall(sql)) {
+
+        cs.setInt(1, idServicio);
+        cs.setInt(2, idBarbero);
+        cs.setTimestamp(3, fechaHora);
+
+        cs.execute();
+        exito = true;
+
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+
+    return exito;
+}
+
 }
