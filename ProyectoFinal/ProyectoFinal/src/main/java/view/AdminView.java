@@ -4,6 +4,7 @@
  */
 package view;
 
+import java.awt.BorderLayout;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -22,10 +23,20 @@ public class AdminView extends javax.swing.JFrame {
      */
     public AdminView() {
         initComponents();
+
+        /*TablaBarberos TB = new TablaBarberos();
+        TB.setSize( 768, 500);
+        TB.setLocation(0, 0);
+        
+        contenedor.removeAll();
+        contenedor.add(TB,BorderLayout.CENTER);
+        contenedor.revalidate();
+        contenedor.repaint();
+         */
         //cargarBarberos();
     }
-    
-/*    private void cargarBarberos() {
+
+    /*    private void cargarBarberos() {
     DefaultTableModel modelo = new DefaultTableModel();
     modelo.addColumn("ID");
     modelo.addColumn("Nombre");
@@ -47,7 +58,6 @@ public class AdminView extends javax.swing.JFrame {
         e.printStackTrace();
     }
 }*/
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -61,7 +71,7 @@ public class AdminView extends javax.swing.JFrame {
         btnReportesClientes = new javax.swing.JButton();
         btnReportesPagos = new javax.swing.JButton();
         btnAdminServicios = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
+        contenedor = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -87,15 +97,20 @@ public class AdminView extends javax.swing.JFrame {
         });
 
         btnAdminServicios.setText("Admin Servicios");
+        btnAdminServicios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdminServiciosActionPerformed(evt);
+            }
+        });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 768, Short.MAX_VALUE)
+        javax.swing.GroupLayout contenedorLayout = new javax.swing.GroupLayout(contenedor);
+        contenedor.setLayout(contenedorLayout);
+        contenedorLayout.setHorizontalGroup(
+            contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        contenedorLayout.setVerticalGroup(
+            contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 500, Short.MAX_VALUE)
         );
 
@@ -112,10 +127,8 @@ public class AdminView extends javax.swing.JFrame {
                 .addComponent(btnAdminServicios, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
                 .addComponent(btnReportesPagos, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
+            .addComponent(contenedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -128,24 +141,41 @@ public class AdminView extends javax.swing.JFrame {
                     .addComponent(btnReportesPagos, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAdminServicios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(contenedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAdministrarBarberosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdministrarBarberosActionPerformed
-       BarberoView barberoView = new BarberoView(); // Asegúrate de que esta clase exista
-       barberoView.setVisible(true);
+        TablaBarberos TB = new TablaBarberos();
+        TB.setSize(768, 500);
+        TB.setLocation(0, 0);
+
+        contenedor.removeAll();
+        contenedor.add(TB, BorderLayout.CENTER);
+        contenedor.revalidate();
+        contenedor.repaint();
     }//GEN-LAST:event_btnAdministrarBarberosActionPerformed
 
     private void btnReportesClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportesClientesActionPerformed
-        // TODO add your handling code here:
+        TablaReporteClientes TRC = new TablaReporteClientes();
+        TRC.setSize(768, 500);
+        TRC.setLocation(0, 0);
+
+        contenedor.removeAll();
+        contenedor.add(TRC, BorderLayout.CENTER);
+        contenedor.revalidate();
+        contenedor.repaint();
     }//GEN-LAST:event_btnReportesClientesActionPerformed
 
     private void btnReportesPagosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportesPagosActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnReportesPagosActionPerformed
+
+    private void btnAdminServiciosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminServiciosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAdminServiciosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -187,6 +217,6 @@ public class AdminView extends javax.swing.JFrame {
     private javax.swing.JButton btnAdministrarBarberos;
     private javax.swing.JButton btnReportesClientes;
     private javax.swing.JButton btnReportesPagos;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel contenedor;
     // End of variables declaration//GEN-END:variables
 }

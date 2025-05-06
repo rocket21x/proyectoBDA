@@ -1,6 +1,7 @@
 utils\Conexion.class
 view\Servicios$1.class
 view\BarberoView$8.class
+view\TablaBarberos.class
 view\RegistrarUsuarioView$1.class
 view\crudServicios$1.class
 view\BarberoView$1.class
@@ -14,13 +15,14 @@ view\AdminView$2.class
 view\AdminView.class
 view\BarberoView$2.class
 view\ClienteView$1.class
+view\TablaReporteClientes.class
 view\BarberoView.class
 view\crudServicios.class
-DAOs\BarberoDAO.class
 control\ControlServicio.class
 view\BarberoView$5.class
 view\AdministradorView$1.class
 view\AdministrarBarberosView$1.class
+view\AdminView$5.class
 control\ControlLogin.class
 view\BarberoView$3.class
 DAOs\UsuarioDAO.class
