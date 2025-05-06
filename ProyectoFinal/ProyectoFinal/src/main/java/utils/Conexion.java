@@ -6,9 +6,9 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 public class Conexion {
-    private static final String URL = "jdbc:mysql://localhost:3306/barberia?useSSL=false&serverTimezone=UTC";
+    private static final String URL = "jdbc:mysql://127.0.0.1:3306/barberia?useSSL=false&serverTimezone=UTC";
     private static final String USUARIO = "root";
-    private static final String CONTRA = "072026Edu";
+    private static final String CONTRA = "072026";
 
     static {
         try {

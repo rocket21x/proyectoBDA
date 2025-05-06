@@ -33,7 +33,7 @@ public class BarberoView extends javax.swing.JFrame {
     model.setRowCount(0); // Limpiar tabla
 
     try {
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/barberia", "root", "072026Edu");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/barberia", "root", "072026");
         String sql = "SELECT * FROM usuarios WHERE rol = 'barbero'";
         PreparedStatement stmt = conn.prepareStatement(sql);
         ResultSet rs = stmt.executeQuery();
