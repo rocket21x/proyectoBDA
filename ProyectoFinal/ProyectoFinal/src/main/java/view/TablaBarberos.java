@@ -4,6 +4,15 @@
  */
 package view;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Timestamp;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author eduar
@@ -13,8 +22,42 @@ public class TablaBarberos extends javax.swing.JPanel {
     /**
      * Creates new form TablaBarberos
      */
+       private void cargarBarberosEnTabla() {
+    DefaultTableModel model = (DefaultTableModel) tblBarberos.getModel();
+    model.setRowCount(0); // Limpiar tabla
+
+    try {
+        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/proyectobda", "root", "072026");
+        String sql = "SELECT * FROM usuarios WHERE rol = 'barbero'";
+        PreparedStatement stmt = conn.prepareStatement(sql);
+        ResultSet rs = stmt.executeQuery();
+
+        while (rs.next()) {
+            int id = rs.getInt("id");
+            String nombre = rs.getString("nombre");
+            String correo = rs.getString("correo");
+            String contrasena = rs.getString("contrasena");
+            String rol = rs.getString("rol");
+            Timestamp fechaRegistro = rs.getTimestamp("fecha_registro");
+
+            model.addRow(new Object[]{id, nombre, correo, contrasena, rol, fechaRegistro});
+        }
+
+        rs.close();
+        stmt.close();
+        conn.close();
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(this, "Error   al cargar barberos: " + e.getMessage());
+    }
+   
+
+    
+}
+    
+    
     public TablaBarberos() {
         initComponents();
+        cargarBarberosEnTabla();
     }
 
     /**
@@ -27,9 +70,9 @@ public class TablaBarberos extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblBarberos = new javax.swing.JTable();
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblBarberos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -40,7 +83,7 @@ public class TablaBarberos extends javax.swing.JPanel {
                 "Barberos", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblBarberos);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -57,6 +100,6 @@ public class TablaBarberos extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tblBarberos;
     // End of variables declaration//GEN-END:variables
 }
