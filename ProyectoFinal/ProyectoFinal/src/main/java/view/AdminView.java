@@ -174,7 +174,8 @@ public class AdminView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnReportesPagosActionPerformed
 
     private void btnAdminServiciosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminServiciosActionPerformed
-        // TODO add your handling code here:
+        new crudServicios().setVisible(true);
+        dispose();
     }//GEN-LAST:event_btnAdminServiciosActionPerformed
 
     /**

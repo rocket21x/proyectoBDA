@@ -4,19 +4,43 @@
  */
 package view;
 
+import control.ControlServicio;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import model.Servicio;
+
 /**
  *
  * @author thecr
  */
 public class ClienteView extends javax.swing.JFrame {
-
+    
+    private ControlServicio controlServicio;
+    
     /**
      * Creates new form ClienteView
      */
     public ClienteView() {
         initComponents();
         setLocationRelativeTo(null);
+        controlServicio = new ControlServicio(); 
+        llenarTablaServicios();
     }
+    
+    private void llenarTablaServicios() {
+    List<Servicio> lista = controlServicio.obtenerServicios(); // obtiene servicios desde DAO
+    DefaultTableModel modelo = (DefaultTableModel) tablaServicios.getModel();
+    modelo.setRowCount(0); // limpia la tabla antes de llenarla
+
+    for (Servicio servicio : lista) {
+        modelo.addRow(new Object[]{
+            servicio.getNombre(),
+            servicio.getDescripcion(),
+            servicio.getPrecio(),
+            servicio.getDuracion()
+        });
+    }
+}
 
     /**
      * This method is called from within the constructor to initialize the form.

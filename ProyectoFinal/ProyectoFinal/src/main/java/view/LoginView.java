@@ -136,41 +136,45 @@ public class LoginView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnIniciarSesionMouseClicked
 
     private void btnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesionActionPerformed
-        // TODO add your handling code here:
-        
-        String correo = tfUsuario.getText();
-        String contrasena = new String(tfContra.getPassword());
+        String correo = tfUsuario.getText().trim();
+        String contrasena = new String(tfContra.getPassword()).trim();
+
+        if (correo.isEmpty() || contrasena.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor, ingrese correo y contraseña.");
+            return;
+        }
+
         ControlLogin controlLogin = new ControlLogin();
         boolean loginExitoso = controlLogin.validarLogin(correo, contrasena);
 
         if (loginExitoso) {
-            // Login exitoso
-            JOptionPane.showMessageDialog(this, "Login exitoso");
             String rol = controlLogin.obtenerTipo(correo);
-            switch (rol){
-            case"cliente":
-                ClienteView cv = new ClienteView();
-                cv.setVisible(true);
-                this.dispose();
-                break;
-            case "barbero":
-                BarberoView bv = new BarberoView();
-                bv.setVisible(true);
-                this.dispose();
-                break;
-            case "administrador":
-                AdminView av = new AdminView();
-                av.setVisible(true);
-                this.dispose();
-                
+
+            if (rol == null) {
+                JOptionPane.showMessageDialog(this, "Rol no encontrado.");
+                return;
             }
-            // Aquí puedes redirigir a la pantalla correspondiente según el rol
+
+            rol = rol.toLowerCase(); // Aseguramos consistencia
+
+            switch (rol) {
+                case "cliente":
+                    new ClienteView().setVisible(true);
+                    break;
+                case "barbero":
+                    new BarberoView().setVisible(true);
+                    break;
+                case "administrador":
+                    new AdminView().setVisible(true);
+                    break;
+                default:
+                    JOptionPane.showMessageDialog(this, "Rol no reconocido: " + rol);
+                    return;
+            }
+            this.dispose(); // Cerramos ventana actual solo si el rol es válido
         } else {
-            // Login fallido
             JOptionPane.showMessageDialog(this, "Correo o contraseña incorrectos");
         }
-        
-        
     }//GEN-LAST:event_btnIniciarSesionActionPerformed
 
     private void textRegistroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_textRegistroMouseClicked
