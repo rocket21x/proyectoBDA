@@ -33,7 +33,7 @@ public class BarberoView extends javax.swing.JFrame {
     model.setRowCount(0); // Limpiar tabla
 
     try {
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/barberia", "root", "072026");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/proyectobda", "root", "072026");
         String sql = "SELECT * FROM usuarios WHERE rol = 'barbero'";
         PreparedStatement stmt = conn.prepareStatement(sql);
         ResultSet rs = stmt.executeQuery();
@@ -270,7 +270,47 @@ tblBarberos.addMouseListener(new java.awt.event.MouseAdapter() {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        // TODO add your handling code here:
+        // Obtener el ID del barbero seleccionado
+    int idBarbero = Integer.parseInt(txtID.getText());  // Asegúrate de que el campo de ID no esté vacío
+
+    // Confirmación de eliminación
+    int confirmacion = JOptionPane.showConfirmDialog(this, "¿Estás seguro de que quieres eliminar este barbero?", "Confirmación", JOptionPane.YES_NO_OPTION);
+    
+    if (confirmacion == JOptionPane.YES_OPTION) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+
+        try {
+            // Establecer conexión con la base de datos
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/proyectobda", "root", "072026");
+
+            // SQL de eliminación
+            String sql = "DELETE FROM usuarios WHERE id = ?";
+            stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, idBarbero);
+
+            // Ejecutar la eliminación
+            int filasAfectadas = stmt.executeUpdate();
+
+            // Verificar si la eliminación fue exitosa
+            if (filasAfectadas > 0) {
+                JOptionPane.showMessageDialog(this, "Barbero eliminado correctamente.");
+                cargarBarberosEnTabla();  // Actualizar la tabla para reflejar los cambios
+            } else {
+                JOptionPane.showMessageDialog(this, "No se pudo eliminar al barbero. Intenta nuevamente.");
+            }
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Error al eliminar barbero: " + e.getMessage());
+        } finally {
+            try {
+                if (stmt != null) stmt.close();
+                if (conn != null) conn.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void txtCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCorreoActionPerformed

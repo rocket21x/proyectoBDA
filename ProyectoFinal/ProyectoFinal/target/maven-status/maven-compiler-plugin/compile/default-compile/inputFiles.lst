@@ -1,9 +1,9 @@
-<<<<<<< HEAD
 C:\Users\eduar\Documents\proyectoBDA\ProyectoFinal\ProyectoFinal\src\main\java\utils\Conexion.java
 C:\Users\eduar\Documents\proyectoBDA\ProyectoFinal\ProyectoFinal\src\main\java\view\BarberoView.java
 C:\Users\eduar\Documents\proyectoBDA\ProyectoFinal\ProyectoFinal\src\main\java\DAOs\CitaDAO.java
 C:\Users\eduar\Documents\proyectoBDA\ProyectoFinal\ProyectoFinal\src\main\java\view\RegistrarUsuarioView.java
 C:\Users\eduar\Documents\proyectoBDA\ProyectoFinal\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\ProyectoFinal.java
+C:\Users\eduar\Documents\proyectoBDA\ProyectoFinal\ProyectoFinal\src\main\java\view\BarberoCitas.java
 C:\Users\eduar\Documents\proyectoBDA\ProyectoFinal\ProyectoFinal\src\main\java\model\Sesion.java
 C:\Users\eduar\Documents\proyectoBDA\ProyectoFinal\ProyectoFinal\src\main\java\view\crudServicios.java
 C:\Users\eduar\Documents\proyectoBDA\ProyectoFinal\ProyectoFinal\src\main\java\model\Servicio.java
@@ -24,31 +24,3 @@ C:\Users\eduar\Documents\proyectoBDA\ProyectoFinal\ProyectoFinal\src\main\java\D
 C:\Users\eduar\Documents\proyectoBDA\ProyectoFinal\ProyectoFinal\src\main\java\view\ClienteView.java
 C:\Users\eduar\Documents\proyectoBDA\ProyectoFinal\ProyectoFinal\src\main\java\control\ControlCita.java
 C:\Users\eduar\Documents\proyectoBDA\ProyectoFinal\ProyectoFinal\src\main\java\view\TablaBarberos.java
-=======
-C:\Users\thecr\OneDrive\Escritorio\proyectoBDA#\ProyectoFinal\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\ProyectoFinal.java
-C:\Users\thecr\OneDrive\Escritorio\proyectoBDA#\ProyectoFinal\ProyectoFinal\src\main\java\control\ControlCita.java
-C:\Users\thecr\OneDrive\Escritorio\proyectoBDA#\ProyectoFinal\ProyectoFinal\src\main\java\control\ControlLogin.java
-C:\Users\thecr\OneDrive\Escritorio\proyectoBDA#\ProyectoFinal\ProyectoFinal\src\main\java\control\ControlServicio.java
-C:\Users\thecr\OneDrive\Escritorio\proyectoBDA#\ProyectoFinal\ProyectoFinal\src\main\java\DAOs\BarberosDAO.java
-C:\Users\thecr\OneDrive\Escritorio\proyectoBDA#\ProyectoFinal\ProyectoFinal\src\main\java\DAOs\CitaDAO.java
-C:\Users\thecr\OneDrive\Escritorio\proyectoBDA#\ProyectoFinal\ProyectoFinal\src\main\java\DAOs\ServicioDAO.java
-C:\Users\thecr\OneDrive\Escritorio\proyectoBDA#\ProyectoFinal\ProyectoFinal\src\main\java\DAOs\UsuarioDAO.java
-C:\Users\thecr\OneDrive\Escritorio\proyectoBDA#\ProyectoFinal\ProyectoFinal\src\main\java\model\Cita.java
-C:\Users\thecr\OneDrive\Escritorio\proyectoBDA#\ProyectoFinal\ProyectoFinal\src\main\java\model\Servicio.java
-C:\Users\thecr\OneDrive\Escritorio\proyectoBDA#\ProyectoFinal\ProyectoFinal\src\main\java\model\Sesion.java
-C:\Users\thecr\OneDrive\Escritorio\proyectoBDA#\ProyectoFinal\ProyectoFinal\src\main\java\model\Usuario.java
-C:\Users\thecr\OneDrive\Escritorio\proyectoBDA#\ProyectoFinal\ProyectoFinal\src\main\java\utils\Conexion.java
-C:\Users\thecr\OneDrive\Escritorio\proyectoBDA#\ProyectoFinal\ProyectoFinal\src\main\java\view\AdministradorView.java
-C:\Users\thecr\OneDrive\Escritorio\proyectoBDA#\ProyectoFinal\ProyectoFinal\src\main\java\view\AdministrarBarberosView.java
-C:\Users\thecr\OneDrive\Escritorio\proyectoBDA#\ProyectoFinal\ProyectoFinal\src\main\java\view\AdminView.java
-C:\Users\thecr\OneDrive\Escritorio\proyectoBDA#\ProyectoFinal\ProyectoFinal\src\main\java\view\BarberoCitas.java
-C:\Users\thecr\OneDrive\Escritorio\proyectoBDA#\ProyectoFinal\ProyectoFinal\src\main\java\view\BarberoView.java
-C:\Users\thecr\OneDrive\Escritorio\proyectoBDA#\ProyectoFinal\ProyectoFinal\src\main\java\view\ClienteView.java
-C:\Users\thecr\OneDrive\Escritorio\proyectoBDA#\ProyectoFinal\ProyectoFinal\src\main\java\view\crudServicios.java
-C:\Users\thecr\OneDrive\Escritorio\proyectoBDA#\ProyectoFinal\ProyectoFinal\src\main\java\view\crudServicios1.java
-C:\Users\thecr\OneDrive\Escritorio\proyectoBDA#\ProyectoFinal\ProyectoFinal\src\main\java\view\LoginView.java
-C:\Users\thecr\OneDrive\Escritorio\proyectoBDA#\ProyectoFinal\ProyectoFinal\src\main\java\view\RegistrarUsuarioView.java
-C:\Users\thecr\OneDrive\Escritorio\proyectoBDA#\ProyectoFinal\ProyectoFinal\src\main\java\view\Servicios.java
-C:\Users\thecr\OneDrive\Escritorio\proyectoBDA#\ProyectoFinal\ProyectoFinal\src\main\java\view\TablaBarberos.java
-C:\Users\thecr\OneDrive\Escritorio\proyectoBDA#\ProyectoFinal\ProyectoFinal\src\main\java\view\TablaReporteClientes.java
->>>>>>> d94b1fb13fe4fcca171be761086d61ae0797a1a3
