@@ -33,7 +33,7 @@ public class BarberoView extends javax.swing.JFrame {
     model.setRowCount(0); // Limpiar tabla
 
     try {
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/barberia", "root", "072026");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/proyectobda", "root", "072026");
         String sql = "SELECT * FROM usuarios WHERE rol = 'barbero'";
         PreparedStatement stmt = conn.prepareStatement(sql);
         ResultSet rs = stmt.executeQuery();
@@ -261,7 +261,7 @@ tblBarberos.addMouseListener(new java.awt.event.MouseAdapter() {
                         .addComponent(BtnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -287,6 +287,9 @@ tblBarberos.addMouseListener(new java.awt.event.MouseAdapter() {
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         // 1. Captura de datos desde los campos
+        System.out.println("Botón Agregar fue presionado");
+
+        
     String nombre = txtNombre.getText();
     String correo = txtCorreo.getText();
     String contrasena = txtContrasena.getText();
