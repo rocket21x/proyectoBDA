@@ -110,6 +110,33 @@ public class UsuarioDAO {
         }
         return usuario;
     }
+    public Usuario buscarPorCorreo(String correo) {
+    Usuario usuario = null;
+
+    String sql = "SELECT * FROM usuarios WHERE correo = ?";
+    
+    try (Connection con = Conexion.getConexion();
+         PreparedStatement ps = con.prepareStatement(sql)) {
+        
+        ps.setString(1, correo);
+        ResultSet rs = ps.executeQuery();
+
+        if (rs.next()) {
+            usuario = new Usuario();
+            usuario.setId(rs.getInt("id")); // Asegúrate de tener estos campos
+            usuario.setNombre(rs.getString("nombre"));
+                usuario.setCorreo(rs.getString("correo"));
+                usuario.setContra(rs.getString("contrasena"));
+                usuario.setRol(rs.getString("rol"));
+            // Puedes agregar más si tienes más campos
+        }
+    } catch (SQLException e) {
+        e.printStackTrace(); // Puedes poner logs si quieres
+    }
+
+    return usuario;
+}
+
     public String obtenerRol(String correo) {
         String rol = null;
         String query = "SELECT rol FROM usuarios WHERE correo = ?";

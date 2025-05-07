@@ -6,6 +6,7 @@ package view;
 
 import control.ControlLogin;
 import javax.swing.JOptionPane;
+import model.Sesion;
 
 /**
  *
@@ -146,6 +147,9 @@ public class LoginView extends javax.swing.JFrame {
         if (loginExitoso) {
             // Login exitoso
             JOptionPane.showMessageDialog(this, "Login exitoso");
+            
+            
+            Sesion.usuarioActual = controlLogin.obtenerUsuarioPorCorreo(correo);
             String rol = controlLogin.obtenerTipo(correo);
             switch (rol){
             case"cliente":

@@ -4,6 +4,23 @@
  */
 package view;
 
+import DAOs.BarberosDAO;
+import DAOs.CitaDAO;
+import DAOs.ServicioDAO;
+import control.ControlCita;
+import java.sql.Timestamp;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerDateModel;
+import javax.swing.table.DefaultTableModel;
+import model.Cita;
+import model.Servicio;
+import model.Sesion;
+import model.Usuario;
+
 /**
  *
  * @author thecr
@@ -16,6 +33,8 @@ public class ClienteView extends javax.swing.JFrame {
     public ClienteView() {
         initComponents();
         setLocationRelativeTo(null);
+        llenarServicios();
+        llenarBarberos();
     }
 
     /**
@@ -34,6 +53,12 @@ public class ClienteView extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         fechaCita = new com.toedter.calendar.JDateChooser();
         brnAgendar = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tablaBarberos = new javax.swing.JTable();
+        Date date = new Date();
+        SpinnerDateModel sm =
+        new SpinnerDateModel(date, null, null, Calendar.HOUR_OF_DAY);
+        horaSpinner = new javax.swing.JSpinner();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -58,47 +83,78 @@ public class ClienteView extends javax.swing.JFrame {
 
         brnAgendar.setFont(new java.awt.Font("Segoe UI Variable", 1, 14)); // NOI18N
         brnAgendar.setText("Agendar");
+        brnAgendar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                brnAgendarActionPerformed(evt);
+            }
+        });
+
+        tablaBarberos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "ID", "Nombre"
+            }
+        ));
+        jScrollPane2.setViewportView(tablaBarberos);
+
+        horaSpinner.setModel(sm);
+        JSpinner.DateEditor de = new JSpinner.DateEditor(horaSpinner, "HH:mm:ss");
+        horaSpinner.setEditor(de);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(167, 167, 167)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addGap(106, 106, 106))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(fechaCita, javax.swing.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE)
-                        .addGap(15, 15, 15))
+                        .addGap(0, 23, Short.MAX_VALUE)
+                        .addComponent(fechaCita, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(50, 50, 50))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(76, 76, 76)
-                        .addComponent(brnAgendar, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(75, 75, 75)
+                        .addComponent(horaSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(70, 70, 70))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(91, 91, 91)
+                .addComponent(jLabel2)
+                .addGap(175, 175, 175)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(brnAgendar, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(116, 116, 116))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(96, 96, 96)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
+                .addGap(69, 69, 69)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18)
                         .addComponent(fechaCita, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(33, 33, 33)
-                        .addComponent(brnAgendar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(12, Short.MAX_VALUE))
+                        .addGap(84, 84, 84)
+                        .addComponent(horaSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(40, 40, 40)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(40, 40, 40)
+                .addComponent(brnAgendar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -109,11 +165,19 @@ public class ClienteView extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void brnAgendarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brnAgendarActionPerformed
+    agendar();        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_brnAgendarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -149,14 +213,122 @@ public class ClienteView extends javax.swing.JFrame {
             }
         });
     }
+    
+    public void agendar() {
+    int idServicio = obtenerServicioSeleccionado();
+    int idBarbero = obtenerBarberoSeleccionado();
+    Timestamp fechaHora = obtenerFechaHora();
+    int idCliente = Sesion.usuarioActual.getId();
+
+    ControlCita cita = new ControlCita();
+    cita.registrarCita(idCliente, idServicio, idBarbero, fechaHora);
+    
+
+    // Aquí iría la lógica para guardar la cita (podrías usar un CitaDAO o un método en ServicioDAO si ahí estás manejando eso)
+    
+   
+}
+    public int obtenerServicioSeleccionado() {
+    int fila = tablaServicios.getSelectedRow();
+    if (fila == -1) return -1;
+    return (int) tablaServicios.getValueAt(fila, 0); // Columna 0 = ID
+}
+
+public int obtenerBarberoSeleccionado() {
+    int fila = tablaBarberos.getSelectedRow();
+    if (fila == -1) return -1;
+    return (int) tablaBarberos.getValueAt(fila, 0); // Columna 0 = ID
+}
+
+
+    public void guardarHora(){
+    Date fecha = fechaCita.getDate();            // solo la fecha
+        Date hora = (Date) horaSpinner.getValue();   // solo la hora
+
+        Calendar calFecha = Calendar.getInstance();
+        calFecha.setTime(fecha);
+
+        Calendar calHora = Calendar.getInstance();
+        calHora.setTime(hora);
+
+        // Mezclamos fecha + hora
+        calFecha.set(Calendar.HOUR_OF_DAY, calHora.get(Calendar.HOUR_OF_DAY));
+        calFecha.set(Calendar.MINUTE, calHora.get(Calendar.MINUTE));
+        calFecha.set(Calendar.SECOND, 0); // opcional
+
+        Date fechaFinal = calFecha.getTime(); // este es el Date completo
+        Timestamp fechaSQL = new Timestamp(fechaFinal.getTime());
+    }
+    
+    public Timestamp obtenerFechaHora() {
+    Date fecha = fechaCita.getDate();
+    Date hora = (Date) horaSpinner.getValue();
+
+    if (fecha == null || hora == null) {
+        return null;
+    }
+
+    Calendar calFecha = Calendar.getInstance();
+    calFecha.setTime(fecha);
+
+    Calendar calHora = Calendar.getInstance();
+    calHora.setTime(hora);
+
+    calFecha.set(Calendar.HOUR_OF_DAY, calHora.get(Calendar.HOUR_OF_DAY));
+    calFecha.set(Calendar.MINUTE, calHora.get(Calendar.MINUTE));
+    calFecha.set(Calendar.SECOND, 0); // Puedes poner segundos si quieres
+
+    return new Timestamp(calFecha.getTimeInMillis());
+}
+
+
+    
+    public void llenarServicios() {
+    ServicioDAO dao = new ServicioDAO();
+    List<Servicio> servicios = dao.listarServicios();
+
+    DefaultTableModel modelo = new DefaultTableModel(new String[]{"ID", "Nombre", "Descripción", "Precio", "Duración"}, 0);
+
+    for (Servicio s : servicios) {
+        modelo.addRow(new Object[]{
+            s.getId(),
+            s.getNombre(),
+            s.getDescripcion(),
+            s.getPrecio(),
+            s.getDuracion()
+        });
+    }
+
+    tablaServicios.setModel(modelo);
+}
+    public void llenarBarberos() {
+    BarberosDAO dao = new BarberosDAO();
+    List<Usuario> barberos = dao.listarBarberos();
+
+    DefaultTableModel modelo = new DefaultTableModel(new String[]{"ID", "Nombre"}, 0);
+
+    for (Usuario b : barberos) {
+        modelo.addRow(new Object[]{
+            b.getId(),
+            b.getNombre()
+        });
+    }
+
+    tablaBarberos.setModel(modelo); // Asegúrate de tener una JTable llamada tablaBarberos
+}
+
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton brnAgendar;
     private com.toedter.calendar.JDateChooser fechaCita;
+    private javax.swing.JSpinner horaSpinner;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable tablaBarberos;
     private javax.swing.JTable tablaServicios;
     // End of variables declaration//GEN-END:variables
 }

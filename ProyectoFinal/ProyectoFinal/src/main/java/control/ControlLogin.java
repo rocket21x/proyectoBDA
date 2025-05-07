@@ -31,6 +31,10 @@ public class ControlLogin {
     public String obtenerTipo(String correo) {
         return usuarioDAO.obtenerRol(correo);  // Llamamos al método del DAO para obtener el rol
     }
+     public Usuario obtenerUsuarioPorCorreo(String correo) {
+        UsuarioDAO dao = new UsuarioDAO();
+        return dao.buscarPorCorreo(correo); // Este método lo defines en el DAO
+    }
     public String registrarUsuario(String nombre, String correo, String contrasena, String rol){
     // Validar que ningún campo esté vacío
     if (nombre == null || nombre.trim().isEmpty() ||
