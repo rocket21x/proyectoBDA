@@ -34,6 +34,7 @@ control\ControlServicio.class
 view\BarberoView$5.class
 view\AdministradorView$1.class
 view\AdministrarBarberosView$1.class
+view\BarberoCitas$1.class
 view\AdminView$5.class
 view\crudServicios1$1.class
 control\ControlLogin.class
@@ -52,6 +53,7 @@ view\Servicios$2.class
 view\AdministradorView$2.class
 DAOs\CitaDAO.class
 view\AdministrarBarberosView.class
+view\BarberoCitas.class
 view\crudServicios1$2.class
 com\mycompany\proyectofinal\ProyectoFinal.class
 view\AdminView$4.class
